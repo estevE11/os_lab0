@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-int random(int max);
+int randomInt(int max);
 int random_from_seed(int seed, int max);
 long long current_timestamp();
 int compared(int a, int b);
@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     }
 
     printf("Generating a number from 1 to %d\n\n", max);
-    int rand = random(max)+1;
+    int rand = randomInt(max)+1;
 
     int x = max/2;
     int lo = 0, hi = max;
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     int found = 0;
 
     for (int i = 0; i < 10; i++) {
-        printf("Current number: %d\n", x, lo, hi);
+        printf("Current number: %d\n", x);
         if (compared(rand, x) < 0) {
             printf("The correct number is LOWER\n\n");
             hi = x;
@@ -59,7 +59,7 @@ int getcenter(int a, int b) {
 // If we try generating random numbers too fast
 // the timestap does not change so the seed is
 // the same.
-int random(int max) {
+int randomInt(int max) {
     long long t = current_timestamp();
     int seed = (t - 1673431506680) % 1000;
 

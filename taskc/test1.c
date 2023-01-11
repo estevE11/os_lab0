@@ -16,9 +16,8 @@ int main(int argc, char *argv[]) {
 
     printf("Generating a number from 1 to %d\n\n", max);
     int rand = randomInt(max)+1;
-
     int x = max/2;
-    int lo = 0, hi = max;
+    int lo = 0, hi = max+1;
 
     int found = 0;
 

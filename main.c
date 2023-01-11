@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/time.h>
 
 int random(int max);
@@ -6,21 +7,31 @@ int random_from_seed(int seed, int max);
 long long current_timestamp();
 
 int main(int argc, char *argv[]) {
-    printf("hello world\n");
-
-    int rand = random(10);
-    
-    int x;
-    printf("Try to guess the number: \n");
-    scanf("%d", &x);
-    if(x > rand) {
-        printf("The correct number is lower\n");
-    } else if (x < rand) {
-        printf("The correct number is higher\n");
-    } else {
-        printf("The number is correct!\n");
+    int max = 100;
+    if(argc == 2) {
+        max = atoi(argv[1]);
     }
 
+    printf("Generating a number from 1 to %d\n\n", max);
+    int n = random(max)+1;
+
+    int x;
+
+    for (int i = 0; i < 10; i++) {
+        printf("Attempts left: %d\n", 10-i);
+        printf("Try to guess the number: \n");
+        scanf("%d", &x);
+        if (x > n) {
+            printf("The correct number is LOWERn\n");
+        }
+        else if (x < n) {
+            printf("The correct number is HIGHER\n\n");
+        }
+        else {
+            printf("The number is CORRECT!\n");
+            break;
+        }
+    }
     return 0;
 }
 
